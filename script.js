@@ -9,7 +9,7 @@ var specCharOptions = ['!', '@', '#', '$', '*']
 
 
 function characterTypes() {
-    
+    var counter = 0 ; 
     //password length
     var X = prompt("How many characters long would you like your password to be?");
     passwordLength = parseInt(X);
@@ -30,6 +30,7 @@ function characterTypes() {
     if (response1 == null) { return; }
     if (response1 == 'yes' | response1 == 'Yes') {
         var lowletters = 1;
+        counter+=1;
     }
     else if (response1 == 'no' | response1 == 'No') {
         lowletters = 0;
@@ -41,6 +42,7 @@ function characterTypes() {
     if (response2 == null) { return; }
     if (response2 == 'yes' | response2 == 'Yes') {
         var upletters = 1;
+        counter+=1;
     }
     else if (response2 == 'no' | response2 == 'No') {
         upletters = 0;
@@ -52,6 +54,7 @@ function characterTypes() {
     if (response3 == null) { return; }
     if (response3 == 'yes' | response3 == 'Yes') {
         var numbers = 1;
+        counter+=1
     }
     else if (response3 == 'no' | response3 == 'No') {
         numbers = 0;
@@ -63,37 +66,42 @@ function characterTypes() {
     if (response4 == null) { return; }
     if (response4 == 'yes' | response4 == 'Yes') {
         var specials = 1;
+        counter+=1
     }
     else if (response4 == 'no' | response4 == 'No') {
         specials = 0;
     }
 
-    
-
+    if (counter<1){
+        alert('You must select at least one password criteria');
+        characterTypes();
+    }
+    else{
+// for loops for creating actual password from the prompts.     
     var lowerArray = []
     if (lowletters == 1) {
-        for (var i = 0; i < Math.floor(passwordLength / 4); i++) {
+        for (var i = 0; i < Math.floor(passwordLength / counter); i++) {
             lowerArray.push(allLowers[Math.floor(Math.random() * allLowers.length)]);
         }
     }
     console.log(lowerArray);
     var upperArray = []
     if (upletters == 1) {
-        for (var i = 0; i < Math.floor(passwordLength / 4); i++) {
+        for (var i = 0; i < Math.floor(passwordLength / counter); i++) {
             upperArray.push(allUppers[Math.floor(Math.random() * allUppers.length)]);
         }
     }
     console.log(upperArray);
     var numArray = []
     if (numbers == 1) {
-        for (var i = 0; i < Math.floor(passwordLength / 4); i++) {
+        for (var i = 0; i < Math.floor(passwordLength / counter); i++) {
             numArray.push(numberOptions[Math.floor(Math.random() * numberOptions.length)]);
         }
     }
     console.log(numArray);
     var specialArray=[]
     if (specials==1){
-        for (var i = 0; i < Math.floor(passwordLength / 4); i++) {
+        for (var i = 0; i < Math.floor(passwordLength / counter); i++) {
             specialArray.push(specCharOptions[Math.floor(Math.random() * specCharOptions.length)]);
     }
     console.log(specialArray);
@@ -102,7 +110,7 @@ function characterTypes() {
     var finalPassword=passwordArray.join(separator='');
     console.log(finalPassword);
     return finalPassword;
-}}
+}}}
 
 
 // function generatePassword() {
