@@ -83,6 +83,9 @@ function characterTypes() {
         var numArray = [];
         var upperArray = [];
         var lowerArray = [];
+        var additionalArrayValues=[];
+        var xxx=passwordArray.length;
+        
         //special characters
         if (specials == 1) {
             for (var i = 0; i < 2; i++) {
@@ -105,7 +108,8 @@ function characterTypes() {
                 upperArray.push(allUppers[Math.floor(Math.random() * allUppers.length)]);
             } passwordArray = passwordArray.concat(upperArray);
             console.log(passwordArray);
-            var xxx=passwordArray.length;
+            
+            
 
         }
         //lower letters
@@ -118,9 +122,23 @@ function characterTypes() {
         }
 
 
-        var finalPassword = passwordArray.join(separator = '');
-        console.log(finalPassword);
-        return finalPassword;
+        
+        if (passwordArray.length<passwordLength){
+            for (var i = 0; i < passwordLength-passwordArray.length; i++) {
+                if (lowletters==1){
+                additionalArrayValues.push(allLowers[Math.floor(Math.random() * allLowers.length)]);}
+                else if (upletters == 1){
+                    additionalArrayValues.push(allUppers[Math.floor(Math.random() * allUppers.length)]);}
+                else if (numbers==1){
+                    additionalArrayValues.push(numberOptions[Math.floor(Math.random() * numberOptions.length)]);}
+                else {
+                    additionalArrayValues.push(specCharOptions[Math.floor(Math.random() * specCharOptions.length)]);}
+
+        } passwordArray = passwordArray.concat(additionalArrayValues);
+    }
+    var finalPassword = passwordArray.join(separator = '');
+    console.log(finalPassword);
+    return finalPassword;
     }
 }
 
